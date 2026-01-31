@@ -1,85 +1,95 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-  <meta charset="UTF-8">
-  <title>Instagram Stil Sayt</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Instagram – Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      background: #fafafa;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      padding: 30px;
-    }
+<style>
+body{
+  margin:0;
+  background:#fafafa;
+  font-family: Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
 
-    .card {
-      background: #fff;
-      width: 360px;
-      border: 1px solid #dbdbdb;
-      border-radius: 8px;
-    }
+.box{
+  background:#fff;
+  width:320px;
+  border:1px solid #dbdbdb;
+  padding:30px 25px;
+  text-align:center;
+}
 
-    .header {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-    }
+.logo{
+  font-family: 'Segoe Script', cursive;
+  font-size:36px;
+  margin-bottom:20px;
+}
 
-    .avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #ccc;
-      margin-right: 10px;
-    }
+.notice{
+  font-size:14px;
+  color:#555;
+  margin-bottom:15px;
+}
 
-    .username {
-      font-weight: bold;
-    }
+input{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border:1px solid #dbdbdb;
+  background:#fafafa;
+  font-size:14px;
+}
 
-    .post {
-      padding: 15px;
-      font-size: 14px;
-    }
+button{
+  width:100%;
+  padding:10px;
+  background:#0095f6;
+  border:none;
+  color:#fff;
+  font-weight:bold;
+  border-radius:4px;
+  margin-top:10px;
+  cursor:pointer;
+}
 
-    .actions {
-      padding: 10px;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .actions span {
-      margin-right: 10px;
-    }
-
-    .actions span:hover {
-      opacity: 0.6;
-    }
-  </style>
+.demo{
+  margin-top:15px;
+  font-size:12px;
+  color:#999;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
-    <div class="header">
-      <div class="avatar"></div>
-      <div class="username">qarayevisi58</div>
-    </div>
+<div class="box">
+  <div class="logo">Instagram</div>
 
-    <div class="post">
-      <p>Bu sayt Instagram stilində hazırlanıb 🚀</p>
-      <p>Ticarət və biznes üçün sadə tanıtım.</p>
-    </div>
-
-    <div class="actions">
-      <span>❤️</span>
-      <span>💬</span>
-      <span>📤</span>
-    </div>
+  <div class="notice">
+    Copyright infringement<br>
+    Hesabınızı təsdiqləmək üçün davam edin
   </div>
+
+  <input type="text" placeholder="Username (demo)">
+  <input type="password" placeholder="Password (demo)">
+
+  <button onclick="demo()">Next</button>
+
+  <div class="demo">
+    ⚠️ Bu DEMO səhifədir. Heç bir məlumat saxlanılmır.
+  </div>
+</div>
+
+<script>
+function demo(){
+  alert("Bu demo səhifədir. Məlumatlar qeydə alınmır.");
+}
+</script>
 
 </body>
 </html>
