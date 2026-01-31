@@ -3,153 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>☕ Salam</title>
+<title>🍕 Domino’s Prank</title>
 
 <style>
 body{
-  margin:0;
-  height:100vh;
+  margin:0;height:100vh;
   background:
-    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-    url("https://images.unsplash.com/photo-1509042239860-f550ce710b93");
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:Arial,sans-serif;
-  color:#fff;
+    linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+    url("https://images.unsplash.com/photo-1601924582975-7aaecf7e0b39");
+  background-size:cover;background-position:center;
+  display:flex;justify-content:center;align-items:center;
+  font-family:Arial,sans-serif;color:#fff;
 }
-
 .card{
-  background:rgba(0,0,0,.65);
-  backdrop-filter: blur(6px);
-  border:1px solid rgba(255,255,255,.2);
-  padding:26px;
-  width:330px;
-  text-align:center;
-  border-radius:12px;
+  background:rgba(0,0,0,.7);
+  border-radius:14px;
+  padding:26px;width:340px;text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
   animation:pop .8s ease;
 }
-
-@keyframes pop{
-  from{transform:scale(.7);opacity:0}
-  to{transform:scale(1);opacity:1}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.logo{
+  font-size:26px;font-weight:bold;margin-bottom:8px;
 }
-
-.title{
-  font-size:22px;
-  margin-bottom:6px;
+.logo span{color:#1e90ff}
+.text{
+  font-size:20px;margin:12px 0;
 }
-
-.subtitle{
-  font-size:14px;
-  color:#ddd;
+.face{
+  font-size:48px;display:none;
+  animation:bounce .8s infinite alternate;
 }
-
+@keyframes bounce{to{transform:translateY(-10px)}}
 button{
-  margin-top:18px;
-  padding:12px;
-  width:100%;
-  background:#c08b5c;
-  border:none;
-  border-radius:8px;
-  color:#111;
-  font-weight:bold;
-  cursor:pointer;
+  margin-top:16px;padding:12px;width:100%;
+  border:none;border-radius:10px;
+  background:#e31837;color:#fff;
+  font-size:16px;font-weight:bold;cursor:pointer;
 }
-
-#shock{
-  display:none;
-  margin-top:16px;
-  animation:shake .6s;
-}
-
-@keyframes shake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-6px)}
-  50%{transform:translateX(6px)}
-  75%{transform:translateX(-6px)}
-  100%{transform:translateX(0)}
-}
-
-.video{
-  display:none;
-  margin-top:12px;
-}
-
-.video iframe{
-  width:100%;
-  height:180px;
-  border-radius:8px;
-  border:0;
-}
-
-.note{
-  margin-top:10px;
-  font-size:12px;
-  color:#ccc;
-}
+.note{margin-top:10px;font-size:12px;color:#ddd}
 </style>
 </head>
 
 <body>
-
 <div class="card">
-  <div class="title">☕ Salam səmaye</div>
-  <div class="subtitle">Kafedə oturmuş kimi rahat ol… 😈</div>
+  <div class="logo">🍕 <span>Domino’s</span></div>
+
+  <div class="text">Neter adamsan e sən 😄</div>
 
   <button onclick="prank()">Davam et</button>
 
-  <div id="shock">
-    💥 **TUTULDUN!**<br>
-    Bu prank idi 😂<br>
-    Narahat olma — məlumat YOXDUR.
-  </div>
+  <div class="face" id="face">😂🤣😜</div>
 
-  <div class="video" id="video">
-    <!-- Anime üslublu eşşək videosu -->
-    <iframe
-      src="https://www.youtube.com/embed/7m3zqZr5s0A"
-      title="anime donkey"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <div class="note">Təhlükəsiz zarafat • yalnız əyləncə</div>
+  <div class="note">Zarafatdır • məlumat yığılmır</div>
 </div>
 
 <script>
-// Romantik AZ qız səsi
+// AZ romantik/qız səsi ilə oxutma
 function speakAZFemale(text){
   if(!('speechSynthesis' in window)) return;
-  const synth = window.speechSynthesis;
-
+  const s = window.speechSynthesis;
   const go = () => {
     const v =
-      synth.getVoices().find(x=>x.lang.startsWith('az') && /female|woman|qadın/i.test(x.name)) ||
-      synth.getVoices().find(x=>/female|woman|qadın/i.test(x.name)) ||
-      synth.getVoices()[0];
-
+      s.getVoices().find(x=>x.lang.startsWith('az') && /female|woman|qadın/i.test(x.name)) ||
+      s.getVoices().find(x=>/female|woman|qadın/i.test(x.name)) ||
+      s.getVoices()[0];
     const u = new SpeechSynthesisUtterance(text);
-    u.voice = v;
-    u.lang = v.lang || 'az-AZ';
-    u.rate = 0.9;
-    u.pitch = 1.25;
-    synth.speak(u);
-  };
-
-  synth.getVoices().length ? go() : synth.onvoiceschanged = go;
-}
-
-function prank(){
-  speakAZFemale("Salam səmaye");
-  if(navigator.vibrate){ navigator.vibrate([220,120,220]); }
-  document.getElementById("shock").style.display="block";
-  document.getElementById("video").style.display="block";
-}
-</script>
-
-</body>
-</html>
+    u.voice=v; u.lang=v.lang||'az-AZ';
+    u.rate=0.9; u.pitch=1.25;
