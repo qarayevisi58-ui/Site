@@ -3,71 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🍕 Domino’s Prank</title>
+<title>Zarafat Saytı 😄</title>
 
 <style>
-body{
-  margin:0;height:100vh;
-  background:
-    linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
-    url("https://images.unsplash.com/photo-1601924582975-7aaecf7e0b39");
-  background-size:cover;background-position:center;
-  display:flex;justify-content:center;align-items:center;
-  font-family:Arial,sans-serif;color:#fff;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("https://images.unsplash.com/photo-1528605248644-14dd04022da1") no-repeat center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.card{
-  background:rgba(0,0,0,.7);
-  border-radius:14px;
-  padding:26px;width:340px;text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.5);
-  animation:pop .8s ease;
+
+.card {
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+  animation: pop 1s ease;
 }
-@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
-.logo{
-  font-size:26px;font-weight:bold;margin-bottom:8px;
+
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
-.logo span{color:#1e90ff}
-.text{
-  font-size:20px;margin:12px 0;
+
+.face {
+  font-size: 70px;
+  animation: laugh 0.8s infinite alternate;
 }
-.face{
-  font-size:48px;display:none;
-  animation:bounce .8s infinite alternate;
+
+@keyframes laugh {
+  from { transform: rotate(-10deg); }
+  to { transform: rotate(10deg); }
 }
-@keyframes bounce{to{transform:translateY(-10px)}}
-button{
-  margin-top:16px;padding:12px;width:100%;
-  border:none;border-radius:10px;
-  background:#e31837;color:#fff;
-  font-size:16px;font-weight:bold;cursor:pointer;
+
+button {
+  background: #ffcc00;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  margin-top: 15px;
+  cursor: pointer;
 }
-.note{margin-top:10px;font-size:12px;color:#ddd}
 </style>
 </head>
 
 <body>
+
 <div class="card">
-  <div class="logo">🍕 <span>Domino’s</span></div>
-
-  <div class="text">Neter adamsan e sən 😄</div>
-
-  <button onclick="prank()">Davam et</button>
-
-  <div class="face" id="face">😂🤣😜</div>
-
-  <div class="note">Zarafatdır • “SOXUM sənin qəzəlinə, ay Nihad”</div>
+  <div class="face">😂</div>
+  <h2>Neter adamsan e sən</h2>
+  <p>Zarafatdır 😄 dostluq qalıcıdır</p>
+  <button onclick="basla()">Bas gör nə olur</button>
+  <p id="say"></p>
 </div>
 
 <script>
-// AZ romantik/qız səsi ilə oxutma
-function speakAZFemale(text){
-  if(!('speechSynthesis' in window)) return;
-  const s = window.speechSynthesis;
-  const go = () => {
-    const v =
-      s.getVoices().find(x=>x.lang.startsWith('az') && /female|woman|qadın/i.test(x.name)) ||
-      s.getVoices().find(x=>/female|woman|qadın/i.test(x.name)) ||
-      s.getVoices()[0];
-    const u = new SpeechSynthesisUtterance(text);
-    u.voice=v; u.lang=v.lang||'az-AZ';
-    u.rate=0.9; u.pitch=1.25;
+/* ziyarətçi sayğacı (lokal, təhlükəsiz) */
+let say = localStorage.getItem("ziyaret") || 0;
+say++;
+localStorage.setItem("ziyaret", say);
+document.getElementById("say").innerText = "Ziyarət sayı: " + say;
+
+/* səs + titrəmə */
+function basla() {
+  if (navigator.vibrate) {
+    navigator.vibrate([300,100,300]);
+  }
+
+  const text = "Oxum sənin qəzəlinə, ay Nihad";
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = "az-AZ";
+  speech.pitch = 1.4;
+  speech.rate = 0.95;
+  window.speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>
