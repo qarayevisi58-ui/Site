@@ -2,34 +2,83 @@
 <html lang="az">
 <head>
   <meta charset="UTF-8">
-  <title>Mənim İlk Saytım</title>
+  <title>Instagram Stil Sayt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
+      margin: 0;
+      background: #fafafa;
       font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      text-align: center;
-      padding: 40px;
+      display: flex;
+      justify-content: center;
+      padding: 30px;
     }
-    h1 {
-      color: #38bdf8;
+
+    .card {
+      background: #fff;
+      width: 360px;
+      border: 1px solid #dbdbdb;
+      border-radius: 8px;
     }
-    .box {
-      background: #020617;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 400px;
-      margin: auto;
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #ccc;
+      margin-right: 10px;
+    }
+
+    .username {
+      font-weight: bold;
+    }
+
+    .post {
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    .actions {
+      padding: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .actions span {
+      margin-right: 10px;
+    }
+
+    .actions span:hover {
+      opacity: 0.6;
     }
   </style>
 </head>
+
 <body>
 
-  <div class="box">
-    <h1>Xoş gəlmisiniz 👋</h1>
-    <p>Bu sayt GitHub Pages üzərində işləyir.</p>
-    <p>İlk uğurlu addım atıldı 🚀</p>
+  <div class="card">
+    <div class="header">
+      <div class="avatar"></div>
+      <div class="username">qarayevisi58</div>
+    </div>
+
+    <div class="post">
+      <p>Bu sayt Instagram stilində hazırlanıb 🚀</p>
+      <p>Ticarət və biznes üçün sadə tanıtım.</p>
+    </div>
+
+    <div class="actions">
+      <span>❤️</span>
+      <span>💬</span>
+      <span>📤</span>
+    </div>
   </div>
 
 </body>
