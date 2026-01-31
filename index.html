@@ -1,95 +1,102 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-<meta charset="UTF-8">
-<title>Instagram – Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InstaMarket</title>
 
-<style>
-body{
-  margin:0;
-  background:#fafafa;
-  font-family: Arial, sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-.box{
-  background:#fff;
-  width:320px;
-  border:1px solid #dbdbdb;
-  padding:30px 25px;
-  text-align:center;
-}
+    .box {
+      width: 340px;
+      background: #fff;
+      border: 1px solid #dbdbdb;
+      padding: 30px 25px;
+      text-align: center;
+    }
 
-.logo{
-  font-family: 'Segoe Script', cursive;
-  font-size:36px;
-  margin-bottom:20px;
-}
+    .logo {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
 
-.notice{
-  font-size:14px;
-  color:#555;
-  margin-bottom:15px;
-}
+    .logo span {
+      color: #d6249f;
+    }
 
-input{
-  width:100%;
-  padding:10px;
-  margin:6px 0;
-  border:1px solid #dbdbdb;
-  background:#fafafa;
-  font-size:14px;
-}
+    .title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
 
-button{
-  width:100%;
-  padding:10px;
-  background:#0095f6;
-  border:none;
-  color:#fff;
-  font-weight:bold;
-  border-radius:4px;
-  margin-top:10px;
-  cursor:pointer;
-}
+    .desc {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 20px;
+    }
 
-.demo{
-  margin-top:15px;
-  font-size:12px;
-  color:#999;
-}
-</style>
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #dbdbdb;
+      background: #fafafa;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #3897f0;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 13px;
+      color: green;
+      display: none;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="box">
-  <div class="logo">Instagram</div>
+  <div class="box">
+    <div class="logo"><span>Insta</span>Market</div>
 
-  <div class="notice">
-    Copyright infringement<br>
-    Hesabınızı təsdiqləmək üçün davam edin
+    <div class="title">Hesab Yoxlanışı</div>
+    <div class="desc">
+      Bu yalnız dizayn nümunəsidir.  
+      Heç bir məlumat saxlanılmır.
+    </div>
+
+    <input type="text" placeholder="Kullanıcı adı (demo)" />
+    <input type="password" placeholder="Şifre (demo)" />
+
+    <button onclick="showResult()">Next</button>
+
+    <div class="result" id="result">
+      ✔ Yoxlama tamamlandı (demo)
+    </div>
   </div>
 
-  <input type="text" placeholder="Username (demo)">
-  <input type="password" placeholder="Password (demo)">
-
-  <button onclick="demo()">Next</button>
-
-  <div class="demo">
-    ⚠️ Bu DEMO səhifədir. Heç bir məlumat saxlanılmır.
-  </div>
-</div>
-
-<script>
-function demo(){
-  alert("Bu demo səhifədir. Məlumatlar qeydə alınmır.");
-}
-</script>
+  <script>
+    function showResult() {
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
