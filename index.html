@@ -1,21 +1,126 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market + Sosial + Zarafat</title>
+<style>
+:root{
+  --bg: rgba(0,0,0,.65);
+  --accent:#ffcc00;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:system-ui,Arial;
+  background:url("https://images.unsplash.com/photo-1528605248644-14dd04022da1") center/cover fixed;
+  color:#fff;
+}
+section{min-height:100vh;display:none}
+.show{display:flex}
+.center{align-items:center;justify-content:center}
+.card{
+  background:var(--bg);border-radius:18px;padding:20px;
+  width:92%;max-width:420px;box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+h1,h2{margin:.2em 0}
+.btn{
+  background:var(--accent);border:none;border-radius:22px;
+  padding:12px 16px;font-size:16px;cursor:pointer;margin-top:10px
+}
+.nav{
+  position:fixed;bottom:12px;left:50%;transform:translateX(-50%);
+  display:flex;gap:10px;z-index:9
+}
+.nav button{padding:10px 14px;border-radius:20px;border:none}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px
+}
+.tile{
+  background:var(--bg);border-radius:14px;overflow:hidden
+}
+.tile img{width:100%;height:120px;object-fit:cover}
+.tile .p{padding:10px;font-size:14px}
+.small{opacity:.85;font-size:13px}
+.face{font-size:64px;animation:laugh .8s infinite alternate}
+@keyframes laugh{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+input,textarea{width:100%;padding:10px;border-radius:12px;border:none;margin:6px 0}
+</style>
+</head>
+<body>
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDKWY80qwN7mPA3F5EPNMwg3F42l-_CUls",
-  authDomain: "qarayevisi58-35d9d.firebaseapp.com",
-  projectId: "qarayevisi58-35d9d",
-  storageBucket: "qarayevisi58-35d9d.firebasestorage.app",
-  messagingSenderId: "831315405000",
-  appId: "1:831315405000:web:f557a9f79dcc44f8deddfd",
-  measurementId: "G-LFQ2D4E7B4"
-};
+<!-- B: Açılış -->
+<section id="home" class="show center">
+  <div class="card" style="text-align:center">
+    <div class="face">😂</div>
+    <h1>Neter adamsan e sən</h1>
+    <p class="small">Zarafatdır 😄 Marketə keç, bax.</p>
+    <button class="btn" onclick="play()">Bas – səs gəlsin</button>
+    <button class="btn" onclick="go('market')">Marketə keç</button>
+  </div>
+</section>
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+<!-- A: Market -->
+<section id="market" class="center">
+  <div class="card">
+    <h2>🏪 Market</h2>
+    <div class="grid">
+      <div class="tile">
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
+        <div class="p"><b>Pizza</b><br><span class="small">İsti & dadlı</span></div>
+      </div>
+      <div class="tile">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
+        <div class="p"><b>Burger</b><br><span class="small">Klassik</span></div>
+      </div>
+      <div class="tile">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348">
+        <div class="p"><b>Kofe</b><br><span class="small">Aroma</span></div>
+      </div>
+    </div>
+    <button class="btn" onclick="go('social')">İnsanlar</button>
+  </div>
+</section>
+
+<!-- C: Sosial -->
+<section id="social" class="center">
+  <div class="card">
+    <h2>👥 İnsanlar</h2>
+    <input id="name" placeholder="Ad (istəyə bağlı)">
+    <input id="img" type="file" accept="image/*">
+    <button class="btn" onclick="add()">Profil əlavə et</button>
+    <div id="list" class="grid" style="margin-top:10px"></div>
+    <button class="btn" onclick="go('home')">Geri</button>
+  </div>
+</section>
+
+<div class="nav">
+  <button onclick="go('home')">🏠</button>
+  <button onclick="go('market')">🏪</button>
+  <button onclick="go('social')">👥</button>
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('show'));
+  document.getElementById(id).classList.add('show');
+  if(navigator.vibrate) navigator.vibrate(80);
+}
+function play(){
+  const t=new SpeechSynthesisUtterance("Oxum sənin qəzəlinə, ay Nihad");
+  t.lang="az-AZ"; t.pitch=1.4; t.rate=.95;
+  speechSynthesis.speak(t);
+}
+const list=document.getElementById('list');
+function add(){
+  const f=document.getElementById('img').files[0];
+  if(!f) return alert("Şəkil seç");
+  const n=document.getElementById('name').value||"Qonaq";
+  const u=URL.createObjectURL(f);
+  const d=document.createElement('div');
+  d.className='tile';
+  d.innerHTML=`<img src="${u}"><div class="p"><b>${n}</b><br><span class="small">profil kartı</span></div>`;
+  list.prepend(d);
+}
+</script>
+</body>
+</html>
