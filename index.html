@@ -1,102 +1,155 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>InstaMarket</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☕ Salam</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fafafa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url("https://images.unsplash.com/photo-1509042239860-f550ce710b93");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial,sans-serif;
+  color:#fff;
+}
 
-    .box {
-      width: 340px;
-      background: #fff;
-      border: 1px solid #dbdbdb;
-      padding: 30px 25px;
-      text-align: center;
-    }
+.card{
+  background:rgba(0,0,0,.65);
+  backdrop-filter: blur(6px);
+  border:1px solid rgba(255,255,255,.2);
+  padding:26px;
+  width:330px;
+  text-align:center;
+  border-radius:12px;
+  animation:pop .8s ease;
+}
 
-    .logo {
-      font-size: 36px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+@keyframes pop{
+  from{transform:scale(.7);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
 
-    .logo span {
-      color: #d6249f;
-    }
+.title{
+  font-size:22px;
+  margin-bottom:6px;
+}
 
-    .title {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
+.subtitle{
+  font-size:14px;
+  color:#ddd;
+}
 
-    .desc {
-      font-size: 13px;
-      color: #777;
-      margin-bottom: 20px;
-    }
+button{
+  margin-top:18px;
+  padding:12px;
+  width:100%;
+  background:#c08b5c;
+  border:none;
+  border-radius:8px;
+  color:#111;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #dbdbdb;
-      background: #fafafa;
-    }
+#shock{
+  display:none;
+  margin-top:16px;
+  animation:shake .6s;
+}
 
-    button {
-      width: 100%;
-      padding: 10px;
-      background: #3897f0;
-      border: none;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  50%{transform:translateX(6px)}
+  75%{transform:translateX(-6px)}
+  100%{transform:translateX(0)}
+}
 
-    .result {
-      margin-top: 15px;
-      font-size: 13px;
-      color: green;
-      display: none;
-    }
-  </style>
+.video{
+  display:none;
+  margin-top:12px;
+}
+
+.video iframe{
+  width:100%;
+  height:180px;
+  border-radius:8px;
+  border:0;
+}
+
+.note{
+  margin-top:10px;
+  font-size:12px;
+  color:#ccc;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="box">
-    <div class="logo"><span>Insta</span>Market</div>
+<div class="card">
+  <div class="title">☕ Salam səmaye</div>
+  <div class="subtitle">Kafedə oturmuş kimi rahat ol… 😈</div>
 
-    <div class="title">Hesab Yoxlanışı</div>
-    <div class="desc">
-      Bu yalnız dizayn nümunəsidir.  
-      Heç bir məlumat saxlanılmır.
-    </div>
+  <button onclick="prank()">Davam et</button>
 
-    <input type="text" placeholder="Kullanıcı adı (demo)" />
-    <input type="password" placeholder="Şifre (demo)" />
-
-    <button onclick="showResult()">Next</button>
-
-    <div class="result" id="result">
-      ✔ Yoxlama tamamlandı (demo)
-    </div>
+  <div id="shock">
+    💥 **TUTULDUN!**<br>
+    Bu prank idi 😂<br>
+    Narahat olma — məlumat YOXDUR.
   </div>
 
-  <script>
-    function showResult() {
-      document.getElementById("result").style.display = "block";
-    }
-  </script>
+  <div class="video" id="video">
+    <!-- Anime üslublu eşşək videosu -->
+    <iframe
+      src="https://www.youtube.com/embed/7m3zqZr5s0A"
+      title="anime donkey"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="note">Təhlükəsiz zarafat • yalnız əyləncə</div>
+</div>
+
+<script>
+// Romantik AZ qız səsi
+function speakAZFemale(text){
+  if(!('speechSynthesis' in window)) return;
+  const synth = window.speechSynthesis;
+
+  const go = () => {
+    const v =
+      synth.getVoices().find(x=>x.lang.startsWith('az') && /female|woman|qadın/i.test(x.name)) ||
+      synth.getVoices().find(x=>/female|woman|qadın/i.test(x.name)) ||
+      synth.getVoices()[0];
+
+    const u = new SpeechSynthesisUtterance(text);
+    u.voice = v;
+    u.lang = v.lang || 'az-AZ';
+    u.rate = 0.9;
+    u.pitch = 1.25;
+    synth.speak(u);
+  };
+
+  synth.getVoices().length ? go() : synth.onvoiceschanged = go;
+}
+
+function prank(){
+  speakAZFemale("Salam səmaye");
+  if(navigator.vibrate){ navigator.vibrate([220,120,220]); }
+  document.getElementById("shock").style.display="block";
+  document.getElementById("video").style.display="block";
+}
+</script>
 
 </body>
 </html>
